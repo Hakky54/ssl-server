@@ -15,6 +15,7 @@
  */
 package nl.altindag.ssl.server.service;
 
+import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.ClientAuth;
 import io.vertx.core.http.HttpServer;
@@ -27,17 +28,19 @@ import nl.altindag.ssl.server.exception.ServerException;
 
 import javax.net.ssl.SSLParameters;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * @author Hakan Altindag
  */
 public class BasicVertxServer implements Server {
 
-    private final AtomicReference<HttpServer> httpServer = new AtomicReference<>();
+    private final Vertx vertx;
+    private final HttpServer httpServer;
+    private final AtomicBoolean serverStarted = new AtomicBoolean(false);
 
     public BasicVertxServer(SSLFactory sslFactory, int port, String responseBody) {
-        Vertx vertx = Vertx.vertx();
+        vertx = Vertx.vertx();
         Router router = Router.router(vertx);
         router.route().path("/api/hello").handler(context -> context.response()
                 .putHeader("Content-Type", "text/plain")
@@ -58,9 +61,10 @@ public class BasicVertxServer implements Server {
                 .map(TrustOptions::wrap)
                 .ifPresent(serverOptions::setTrustOptions);
 
-        vertx.createHttpServer(serverOptions)
-                .requestHandler(router)
-                .listen(port, asyncResult -> httpServer.set(asyncResult.result()));
+        httpServer = vertx.createHttpServer(serverOptions)
+                .requestHandler(router);
+
+        httpServer.listen(port, result -> serverStarted.set(true));
 
         waitTillServerHasBeenStarted();
     }
@@ -77,7 +81,7 @@ public class BasicVertxServer implements Server {
 
     private void waitTillServerHasBeenStarted() {
         try {
-            while (httpServer.get() == null) {
+            while (serverStarted.get()) {
                 TimeUnit.MILLISECONDS.sleep(100);
             }
         } catch (InterruptedException e) {
@@ -88,7 +92,19 @@ public class BasicVertxServer implements Server {
 
     @Override
     public void stop() {
-        httpServer.get().close();
+        Future<Void> future = httpServer.close();
+
+        try {
+            while (!future.isComplete()) {
+                TimeUnit.MILLISECONDS.sleep(100);
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new ServerException(e);
+        }
+
+        vertx.deploymentIDs().forEach(vertx::undeploy);
+        vertx.close();
     }
 
 }
