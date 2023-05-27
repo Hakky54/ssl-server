@@ -15,7 +15,6 @@
  */
 package nl.altindag.ssl.server.service;
 
-import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.http.ClientAuth;
 import io.vertx.core.http.HttpServer;
@@ -94,17 +93,7 @@ public class BasicVertxServer implements Server {
 
     @Override
     public void stop() {
-        Future<Void> future = httpServer.close();
-
-        try {
-            while (!future.isComplete()) {
-                TimeUnit.MILLISECONDS.sleep(100);
-            }
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-            throw new ServerException(e);
-        }
-
+        httpServer.close();
         vertx.deploymentIDs().forEach(vertx::undeploy);
         vertx.close();
     }
