@@ -15,8 +15,10 @@ This is a small Hello World server with SSL/TLS enabled which can be used during
 configuration with Keystores, PEM files or other configurations related to ssl.
 
 Initially I used [BadSSL.com](https://badssl.com/) for one of my
-projects, [SSLContext-Kickstart](https://github.com/Hakky54/sslcontext-kickstart), however the certificates would get
-updated shortly after expiring which resulted into false-positive failing tests.
+projects, [SSLContext-Kickstart](https://github.com/Hakky54/sslcontext-kickstart), however the certificates would not
+get
+updated shortly after expiring which resulted into false-positive failing tests. I always needed to temporally disable
+those tests till the certificates got updated.
 I wanted to have something as easy as possible to just only test my ssl configuration and that is how this project came
 into life.
 
