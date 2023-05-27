@@ -7,7 +7,7 @@
     <version>1.0.1-SNAPSHOT</version>
 
     <name>SSL-Server</name>
-    <description>Easily setup an SSL Server for testing purposes</description>
+    <description>Easily setup a SSL Server for testing purposes</description>
     <url>https://github.com/Hakky54/ssl-server</url>
 
     <licenses>
