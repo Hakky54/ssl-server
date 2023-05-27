@@ -84,6 +84,8 @@ public class BasicVertxServer implements Server {
             while (serverStarted.get()) {
                 TimeUnit.MILLISECONDS.sleep(100);
             }
+
+            TimeUnit.MILLISECONDS.sleep(500);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
             throw new ServerException(e);
