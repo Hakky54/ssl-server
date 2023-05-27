@@ -1,14 +1,13 @@
 [![Actions Status](https://github.com/Hakky54/ssl-server/workflows/Build/badge.svg)](https://github.com/Hakky54/ssl-server/actions)
-[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=io.github.hakky54%3Assl-servert&metric=security_rating)](https://sonarcloud.io/dashboard?id=io.github.hakky54%3Assl-servert)
-[![Known Vulnerabilities](https://snyk.io/test/github/Hakky54/ssl-server/badge.svg)](https://snyk.io/test/github/Hakky54/ssl-server)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=io.github.hakky54%3Assl-servert&metric=coverage)](https://sonarcloud.io/dashboard?id=io.github.hakky54%3Assl-servert)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=io.github.hakky54%3Assl-server&metric=security_rating)](https://sonarcloud.io/dashboard?id=io.github.hakky54%3Assl-server)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=io.github.hakky54%3Assl-server&metric=coverage)](https://sonarcloud.io/dashboard?id=io.github.hakky54%3Assl-server)
 [![JDK Compatibility](https://img.shields.io/badge/JDK_Compatibility-8+-blue.svg)](#)
 [![Kotlin Compatibility](https://img.shields.io/badge/Kotlin_Compatibility-1.5+-blue.svg)](#)
 [![Android API Compatibility](https://img.shields.io/badge/Android_API_Compatibility-24+-blue.svg)](#)
 [![Apache2 license](https://img.shields.io/badge/license-Aache2.0-blue.svg)](https://github.com/Hakky54/ssl-server/blob/master/LICENSE)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.hakky54/ssl-server/badge.svg)](https://mvnrepository.com/artifact/io.github.hakky54/ssl-server)
 
-[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=io.github.hakky54%3Assl-servert)
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=io.github.hakky54%3Assl-server)
 
 # SSL Server 🔐
 
