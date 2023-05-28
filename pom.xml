@@ -52,7 +52,7 @@
         <!--    project properties    -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <version.vertx>4.4.2</version.vertx>
+        <version.undertow>2.3.6.Final</version.undertow>
         <version.sslcontext-kickstart>7.5.0</version.sslcontext-kickstart>
 
         <!--    test dependency properties    -->
@@ -75,9 +75,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.vertx</groupId>
-            <artifactId>vertx-web</artifactId>
-            <version>${version.vertx}</version>
+            <groupId>io.undertow</groupId>
+            <artifactId>undertow-core</artifactId>
+            <version>${version.undertow}</version>
         </dependency>
         <dependency>
             <groupId>io.github.hakky54</groupId>

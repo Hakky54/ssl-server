@@ -33,7 +33,7 @@ public interface Server {
     }
 
     static Server createDefault(SSLFactory sslFactory, int port, String responseBody) {
-        return new BasicVertxServer(sslFactory, port, responseBody);
+        return new UndertowServer(sslFactory, port, responseBody);
     }
 
 }

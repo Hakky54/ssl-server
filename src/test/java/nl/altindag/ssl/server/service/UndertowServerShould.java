@@ -15,8 +15,8 @@
  */
 package nl.altindag.ssl.server.service;
 
-import io.vertx.core.http.ClientAuth;
 import org.junit.jupiter.api.Test;
+import org.xnio.SslClientAuthMode;
 
 import javax.net.ssl.SSLParameters;
 
@@ -25,15 +25,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * @author Hakan Altindag
  */
-public class BasicVertxServerShould {
+public class UndertowServerShould {
 
     @Test
     public void mapNeedClientAuth() {
         SSLParameters sslParameters = new SSLParameters();
         sslParameters.setNeedClientAuth(true);
 
-        ClientAuth clientAuth = BasicVertxServer.getClientAuth(sslParameters);
-        assertThat(clientAuth).isEqualTo(ClientAuth.REQUIRED);
+        SslClientAuthMode clientAuthMode = UndertowServer.getClientAuthMode(sslParameters);
+        assertThat(clientAuthMode).isEqualTo(SslClientAuthMode.REQUIRED);
     }
 
     @Test
@@ -41,8 +41,8 @@ public class BasicVertxServerShould {
         SSLParameters sslParameters = new SSLParameters();
         sslParameters.setWantClientAuth(true);
 
-        ClientAuth clientAuth = BasicVertxServer.getClientAuth(sslParameters);
-        assertThat(clientAuth).isEqualTo(ClientAuth.REQUEST);
+        SslClientAuthMode clientAuthMode = UndertowServer.getClientAuthMode(sslParameters);
+        assertThat(clientAuthMode).isEqualTo(SslClientAuthMode.REQUESTED);
     }
 
     @Test
@@ -51,8 +51,8 @@ public class BasicVertxServerShould {
         sslParameters.setWantClientAuth(false);
         sslParameters.setNeedClientAuth(false);
 
-        ClientAuth clientAuth = BasicVertxServer.getClientAuth(sslParameters);
-        assertThat(clientAuth).isEqualTo(ClientAuth.NONE);
+        SslClientAuthMode clientAuthMode = UndertowServer.getClientAuthMode(sslParameters);
+        assertThat(clientAuthMode).isEqualTo(SslClientAuthMode.NOT_REQUESTED);
     }
 
 }
