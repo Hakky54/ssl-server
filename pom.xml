@@ -52,7 +52,7 @@
         <!--    project properties    -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <version.undertow>2.3.6.Final</version.undertow>
+        <version.netty>4.1.93.Final</version.netty>
         <version.sslcontext-kickstart>8.0.0</version.sslcontext-kickstart>
 
         <!--    test dependency properties    -->
@@ -75,9 +75,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.undertow</groupId>
-            <artifactId>undertow-core</artifactId>
-            <version>${version.undertow}</version>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-codec-http</artifactId>
+            <version>${version.netty}</version>
         </dependency>
         <dependency>
             <groupId>io.github.hakky54</groupId>

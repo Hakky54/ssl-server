@@ -15,8 +15,8 @@
  */
 package nl.altindag.ssl.server.service;
 
+import io.netty.handler.ssl.ClientAuth;
 import org.junit.jupiter.api.Test;
-import org.xnio.SslClientAuthMode;
 
 import javax.net.ssl.SSLParameters;
 
@@ -25,15 +25,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * @author Hakan Altindag
  */
-public class UndertowServerShould {
+public class NettyServerShould {
 
     @Test
     public void mapNeedClientAuth() {
         SSLParameters sslParameters = new SSLParameters();
         sslParameters.setNeedClientAuth(true);
 
-        SslClientAuthMode clientAuthMode = UndertowServer.getClientAuthMode(sslParameters);
-        assertThat(clientAuthMode).isEqualTo(SslClientAuthMode.REQUIRED);
+        ClientAuth clientAuthMode = NettyServer.getClientAuth(sslParameters);
+        assertThat(clientAuthMode).isEqualTo(ClientAuth.REQUIRE);
     }
 
     @Test
@@ -41,8 +41,8 @@ public class UndertowServerShould {
         SSLParameters sslParameters = new SSLParameters();
         sslParameters.setWantClientAuth(true);
 
-        SslClientAuthMode clientAuthMode = UndertowServer.getClientAuthMode(sslParameters);
-        assertThat(clientAuthMode).isEqualTo(SslClientAuthMode.REQUESTED);
+        ClientAuth clientAuthMode = NettyServer.getClientAuth(sslParameters);
+        assertThat(clientAuthMode).isEqualTo(ClientAuth.OPTIONAL);
     }
 
     @Test
@@ -51,8 +51,8 @@ public class UndertowServerShould {
         sslParameters.setWantClientAuth(false);
         sslParameters.setNeedClientAuth(false);
 
-        SslClientAuthMode clientAuthMode = UndertowServer.getClientAuthMode(sslParameters);
-        assertThat(clientAuthMode).isEqualTo(SslClientAuthMode.NOT_REQUESTED);
+        ClientAuth clientAuthMode = NettyServer.getClientAuth(sslParameters);
+        assertThat(clientAuthMode).isEqualTo(ClientAuth.NONE);
     }
 
 }

@@ -1,8 +1,11 @@
 module nl.altindag.ssl.server {
 
     requires transitive nl.altindag.ssl;
-    requires undertow.core;
-    requires xnio.api;
+    requires io.netty.codec;
+    requires io.netty.codec.http;
+    requires io.netty.transport;
+    requires io.netty.buffer;
+    requires io.netty.handler;
 
     exports nl.altindag.ssl.server.service;
 
