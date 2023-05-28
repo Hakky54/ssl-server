@@ -3,6 +3,10 @@
 This list is not intended to be all-encompassing - it will document major and breaking API
 changes with their rationale when appropriate:
 
+### v1.0.5
+
+- Replaced Undertow with Netty
+
 ### v1.0.4
 
 - Made Server implementation package protected
