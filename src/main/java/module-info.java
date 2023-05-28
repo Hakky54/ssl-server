@@ -1,9 +1,8 @@
 module nl.altindag.ssl.server {
 
     requires transitive nl.altindag.ssl;
-
-    requires io.vertx.core;
-    requires io.vertx.web;
+    requires undertow.core;
+    requires xnio.api;
 
     exports nl.altindag.ssl.server.service;
 
