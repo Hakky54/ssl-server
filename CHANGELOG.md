@@ -3,6 +3,10 @@
 This list is not intended to be all-encompassing - it will document major and breaking API
 changes with their rationale when appropriate:
 
+### v1.0.3
+
+- Replaced Vertx with Undertow
+
 ### v1.0.2
 
 - Added explicit delay of 500ms in startup
