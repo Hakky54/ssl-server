@@ -26,7 +26,7 @@ import javax.net.ssl.SSLParameters;
 /**
  * @author Hakan Altindag
  */
-public class UndertowServer implements Server {
+class UndertowServer implements Server {
 
     private final Undertow server;
 
