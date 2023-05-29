@@ -38,7 +38,6 @@ import io.netty.handler.ssl.SupportedCipherSuiteFilter;
 import nl.altindag.ssl.SSLFactory;
 import nl.altindag.ssl.server.exception.ServerException;
 
-import javax.net.ssl.SSLException;
 import javax.net.ssl.SSLParameters;
 import javax.net.ssl.X509ExtendedKeyManager;
 
@@ -85,7 +84,7 @@ class NettyServer implements Server {
                     .childHandler(new ServerInitializer(sslContext, responseBody));
 
             httpChannel = serverBootstrap.bind(port).sync();
-        } catch (SSLException | InterruptedException e) {
+        } catch (Exception e) {
             throw new ServerException(e);
         }
     }
