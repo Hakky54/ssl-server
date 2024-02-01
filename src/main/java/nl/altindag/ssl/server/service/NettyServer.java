@@ -41,6 +41,8 @@ import nl.altindag.ssl.server.exception.ServerException;
 import javax.net.ssl.SSLParameters;
 import javax.net.ssl.X509ExtendedKeyManager;
 
+import java.util.concurrent.TimeUnit;
+
 import static io.netty.channel.ChannelFutureListener.CLOSE;
 import static io.netty.handler.codec.http.HttpHeaderNames.CONNECTION;
 import static io.netty.handler.codec.http.HttpHeaderNames.CONTENT_LENGTH;
@@ -60,7 +62,7 @@ class NettyServer implements Server {
     private final NioEventLoopGroup bossGroup;
     private final NioEventLoopGroup workerGroup;
 
-    NettyServer(SSLFactory sslFactory, int port, String responseBody) {
+    NettyServer(SSLFactory sslFactory, int port, String responseBody, int delayResponseTimeInMilliseconds) {
         X509ExtendedKeyManager keyManager = sslFactory.getKeyManager()
                 .orElseThrow(NullPointerException::new);
 
@@ -81,7 +83,7 @@ class NettyServer implements Server {
             serverBootstrap.option(ChannelOption.SO_BACKLOG, 1024);
             serverBootstrap.group(bossGroup, workerGroup)
                     .channelFactory(NioServerSocketChannel::new)
-                    .childHandler(new ServerInitializer(sslContext, responseBody));
+                    .childHandler(new ServerInitializer(sslContext, responseBody, delayResponseTimeInMilliseconds));
 
             httpChannel = serverBootstrap.bind(port).sync();
         } catch (Exception e) {
@@ -100,10 +102,12 @@ class NettyServer implements Server {
 
         private final SslContext sslContext;
         private final String responseBody;
+        private final int delayResponseTimeInMilliseconds;
 
-        public ServerInitializer(SslContext sslContext, String responseBody) {
+        public ServerInitializer(SslContext sslContext, String responseBody, int delayResponseTimeInMilliseconds) {
             this.sslContext = sslContext;
             this.responseBody = responseBody;
+            this.delayResponseTimeInMilliseconds = delayResponseTimeInMilliseconds;
         }
 
         @Override
@@ -111,7 +115,7 @@ class NettyServer implements Server {
             channel.pipeline()
                     .addFirst("ssl", new SslHandler(sslContext.newEngine(channel.alloc())))
                     .addLast(new HttpServerCodec())
-                    .addLast(new ServerHandler(responseBody));
+                    .addLast(new ServerHandler(responseBody, delayResponseTimeInMilliseconds));
         }
 
     }
@@ -119,9 +123,19 @@ class NettyServer implements Server {
     private static class ServerHandler extends ChannelInboundHandlerAdapter {
 
         private final String responseBody;
+        private final int delayResponseTimeInMilliseconds;
 
-        public ServerHandler(String responseBody) {
+        public ServerHandler(String responseBody, int delayResponseTimeInMilliseconds) {
             this.responseBody = responseBody;
+            this.delayResponseTimeInMilliseconds = delayResponseTimeInMilliseconds;
+        }
+
+        @Override
+        public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
+            if (delayResponseTimeInMilliseconds > 0) {
+                TimeUnit.MILLISECONDS.sleep(delayResponseTimeInMilliseconds);
+            }
+            super.channelRegistered(ctx);
         }
 
         @Override

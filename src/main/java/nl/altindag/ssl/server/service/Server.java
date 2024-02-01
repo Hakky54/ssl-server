@@ -33,7 +33,47 @@ public interface Server {
     }
 
     static Server createDefault(SSLFactory sslFactory, int port, String responseBody) {
-        return new NettyServer(sslFactory, port, responseBody);
+        return builder(sslFactory)
+                .withPort(port)
+                .withResponseBody(responseBody)
+                .withDelayedResponseTime(-1)
+                .build();
+    }
+
+    static Builder builder(SSLFactory sslFactory) {
+        return new Builder(sslFactory);
+    }
+
+    class Builder {
+
+        private final SSLFactory sslFactory;
+        private int port = 8443;
+        private String responseBody = "Hello World!";
+        private int delayResponseTimeInMilliseconds = -1;
+
+        private Builder(SSLFactory sslFactory) {
+            this.sslFactory = sslFactory;
+        }
+
+        public Builder withPort(int port) {
+            this.port = port;
+            return this;
+        }
+
+        public Builder withResponseBody(String responseBody) {
+            this.responseBody = responseBody;
+            return this;
+        }
+
+        public Builder withDelayedResponseTime(int delayResponseTimeInMilliseconds) {
+            this.delayResponseTimeInMilliseconds = delayResponseTimeInMilliseconds;
+            return this;
+        }
+
+        public Server build() {
+            return new NettyServer(sslFactory, port, responseBody, delayResponseTimeInMilliseconds);
+        }
+
     }
 
 }
