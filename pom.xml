@@ -52,13 +52,13 @@
         <!--    project properties    -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <version.netty>4.1.94.Final</version.netty>
-        <version.sslcontext-kickstart>8.1.2</version.sslcontext-kickstart>
+        <version.netty>4.1.106.Final</version.netty>
+        <version.sslcontext-kickstart>8.3.0</version.sslcontext-kickstart>
 
         <!--    test dependency properties    -->
-        <version.junit>5.9.2</version.junit>
-        <version.assertj>3.24.2</version.assertj>
-        <version.slf4j>2.0.7</version.slf4j>
+        <version.junit>5.10.1</version.junit>
+        <version.assertj>3.25.2</version.assertj>
+        <version.slf4j>2.0.11</version.slf4j>
 
         <!--    plugin properties   -->
         <version.jacoco-maven-plugin>0.8.5</version.jacoco-maven-plugin>
