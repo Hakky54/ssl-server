@@ -31,7 +31,7 @@ into life.
 <dependency>
     <groupId>io.github.hakky54</groupId>
     <artifactId>ssl-server</artifactId>
-    <version>1.0.6</version>
+    <version>1.0.8</version>
     <scope>test</scope>
 </dependency>
 ```
@@ -39,19 +39,19 @@ into life.
 ### Install with Gradle
 
 ```groovy
-testImplementation 'io.github.hakky54:ssl-server:1.0.6'
+testImplementation 'io.github.hakky54:ssl-server:1.0.8'
 ```
 
 ### Install with Gradle Kotlin DSL
 
 ```kotlin
-testImplementation("io.github.hakky54:ssl-server:1.0.6")
+testImplementation("io.github.hakky54:ssl-server:1.0.8")
 ```
 
 ### Install with Scala SBT
 
 ```
-libraryDependencies += "io.github.hakky54" % "ssl-server" % "1.0.6" % Test
+libraryDependencies += "io.github.hakky54" % "ssl-server" % "1.0.8" % Test
 ```
 
 # Usage
