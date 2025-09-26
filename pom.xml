@@ -42,6 +42,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <version.netty>4.2.4.Final</version.netty>
+        <version.bc>1.82</version.bc>
         <version.ayza>10.0.0</version.ayza>
 
         <!--    test dependency properties    -->
@@ -67,6 +68,11 @@
             <groupId>io.netty</groupId>
             <artifactId>netty-codec-http</artifactId>
             <version>${version.netty}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.bouncycastle</groupId>
+            <artifactId>bcpkix-jdk18on</artifactId>
+            <version>${version.bc}</version>
         </dependency>
         <dependency>
             <groupId>io.github.hakky54</groupId>
