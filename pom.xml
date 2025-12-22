@@ -41,23 +41,23 @@
         <!--    project properties    -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <version.netty>4.2.4.Final</version.netty>
-        <version.bc>1.82</version.bc>
-        <version.ayza>10.0.0</version.ayza>
+        <version.netty>4.2.9.Final</version.netty>
+        <version.bc>1.83</version.bc>
+        <version.ayza>10.0.2</version.ayza>
 
         <!--    test dependency properties    -->
         <version.junit>5.13.4</version.junit>
-        <version.assertj>3.27.4</version.assertj>
+        <version.assertj>3.27.6</version.assertj>
         <version.slf4j>2.0.17</version.slf4j>
 
         <!--    plugin properties   -->
-        <version.jacoco-maven-plugin>0.8.13</version.jacoco-maven-plugin>
-        <version.maven-surefire-plugin>3.5.3</version.maven-surefire-plugin>
-        <version.maven-compiler-plugin>3.14.0</version.maven-compiler-plugin>
-        <version.maven-source-plugin>3.3.1</version.maven-source-plugin>
-        <version.maven-javadoc-plugin>3.11.3</version.maven-javadoc-plugin>
+        <version.jacoco-maven-plugin>0.8.14</version.jacoco-maven-plugin>
+        <version.maven-surefire-plugin>3.5.4</version.maven-surefire-plugin>
+        <version.maven-compiler-plugin>3.14.1</version.maven-compiler-plugin>
+        <version.maven-source-plugin>3.4.0</version.maven-source-plugin>
+        <version.maven-javadoc-plugin>3.12.0</version.maven-javadoc-plugin>
         <version.maven-gpg-plugin>3.2.8</version.maven-gpg-plugin>
-        <version.maven-release-plugin>3.1.1</version.maven-release-plugin>
+        <version.maven-release-plugin>3.3.1</version.maven-release-plugin>
         <version.nexus-staging-maven-plugin>1.7.0</version.nexus-staging-maven-plugin>
         <version.license-maven-plugin>5.0.0</version.license-maven-plugin>
         <license.git.copyrightYears>2023</license.git.copyrightYears>
