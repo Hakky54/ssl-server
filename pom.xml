@@ -41,7 +41,7 @@
         <!--    project properties    -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <version.netty>4.2.4.Final</version.netty>
+        <version.netty>4.2.9.Final</version.netty>
         <version.bc>1.82</version.bc>
         <version.ayza>10.0.2</version.ayza>
 
