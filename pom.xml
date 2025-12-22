@@ -47,7 +47,7 @@
 
         <!--    test dependency properties    -->
         <version.junit>5.13.4</version.junit>
-        <version.assertj>3.27.4</version.assertj>
+        <version.assertj>3.27.6</version.assertj>
         <version.slf4j>2.0.17</version.slf4j>
 
         <!--    plugin properties   -->
