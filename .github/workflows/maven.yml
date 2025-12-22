@@ -12,8 +12,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
-        java: [ '11', '17', '21' ]
+        os: [ ubuntu-latest ]
+        java: [ '8', '11', '17', '21' ]
+
     steps:
       - uses: actions/checkout@v4
 
@@ -24,15 +25,13 @@ jobs:
           java-version: ${{ matrix.java }}
           cache: 'maven'
 
-      - name: print Java version
-        run: java -version
-
-      - name: Build with Maven
+      - name: Build and test
         run: mvn clean verify --no-transfer-progress
 
-  code-quality-and-coverage-scan:
+  code-quality-scan:
     if: ${{ (github.actor == 'Hakky54') }}
-    runs-on: macOS-latest
+    runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
 
@@ -44,6 +43,6 @@ jobs:
           cache: 'maven'
 
       - name: Build, test and quality scan
-        run: mvn clean verify sonar:sonar -Dsonar.projectName=ssl-server -Dsonar.organization=hakky54 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }} --no-transfer-progress
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.organization=hakky54 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login="$SONAR_TOKEN" --no-transfer-progress
