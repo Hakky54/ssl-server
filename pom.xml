@@ -46,7 +46,7 @@
         <version.ayza>10.0.4</version.ayza>
 
         <!--    test dependency properties    -->
-        <version.junit>5.14.3</version.junit>
+        <version.junit>5.14.4</version.junit>
         <version.assertj>3.27.7</version.assertj>
         <version.slf4j>2.0.17</version.slf4j>
 
